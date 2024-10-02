@@ -194,6 +194,9 @@ try {
                     //Création d'une table Table(id, champ1, champ2)
                     $rqt = "CREATE TABLE $BDD.Table (id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, champ1 VARCHAR(255), champ2 VARCHAR(255));";
                     $instancePdo->query($rqt);
+
+                    $query = "CREATE TABLE $BDD.Utilisateur (id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, nom VARCHAR(255), prenom VARCHAR(255), motDePasse VARCHAR(255));";
+                    $instancePdo->query($query);
                     $test = true;
                 } catch (PDOException $e) {
                     echo $e->getMessage();
@@ -207,6 +210,9 @@ try {
                     echo "Connecté en tant que $USERBDD\n";
                     $rqt = "CREATE TABLE $BDD.Table (id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, champ1 VARCHAR(255), champ2 VARCHAR(255));";
                     $instancePdo->query($rqt);
+
+                    $query = "CREATE TABLE $BDD.Utilisateur (id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, nom VARCHAR(255), prenom VARCHAR(255), motDePasse VARCHAR(255));";
+                    $instancePdo->query($query);
 
                     $test = true;
                 } catch (PDOException $e) {

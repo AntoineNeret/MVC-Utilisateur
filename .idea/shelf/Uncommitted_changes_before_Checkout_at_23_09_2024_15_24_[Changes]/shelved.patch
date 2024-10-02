@@ -1,0 +1,37 @@
+Index: index.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\r\ninclude_once \"vendor/autoload.php\";\r\n\r\nuse App\\Utilitaire\\Vue;\r\nuse App\\Vue\\Vue_BienvenueAllerPagePrecedente;\r\nuse App\\Vue\\Vue_BienvenueAllerPageSuivante;\r\n\r\nif (isset($_REQUEST[\"case\"]))\r\n    $case = $_REQUEST[\"case\"];\r\nelse\r\n    $case = \"defaut\";\r\n\r\nif (isset($_REQUEST[\"action\"]))\r\n    $action = $_REQUEST[\"action\"];\r\nelse\r\n    $action = \"defaut\";\r\n\r\n$Vue = new Vue();\r\nswitch ($case) {\r\n    case \"A\":\r\n    case \"defaut\":\r\n        include \".\\src\\Controleur\\caseA.php\";\r\n        break;\r\n    case \"B\":\r\n        include \".\\src\\Controleur\\caseB.php\";\r\n        break;\r\n}\r\n$Vue->afficher();
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/index.php b/index.php
+--- a/index.php	
++++ b/index.php	
+@@ -17,12 +17,20 @@
+ 
+ $Vue = new Vue();
+ switch ($case) {
+-    case "A":
+     case "defaut":
+-        include ".\src\Controleur\caseA.php";
+-        break;
+-    case "B":
+-        include ".\src\Controleur\caseB.php";
++        switch ($action) {
++            case "allerPageSuivante":
++                $Vue->addToCorps(new Vue_BienvenueAllerPagePrecedente());
++                break;
++            case "allerPagePrecedente":
++                $Vue->addToCorps(new Vue_BienvenueAllerPageSuivante());
++                break;
++            case "defaut":
++                $Vue->addToCorps(new Vue_BienvenueAllerPageSuivante());
++                break;
++        }
+         break;
++
++
+ }
+ $Vue->afficher();
+\ No newline at end of file

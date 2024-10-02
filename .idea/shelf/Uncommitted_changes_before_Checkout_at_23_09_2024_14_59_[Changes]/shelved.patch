@@ -1,0 +1,37 @@
+Index: index.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\r\ninclude_once \"vendor/autoload.php\";\r\nuse App\\Utilitaire\\Vue;\r\nuse App\\Vue\\Vue_Bienvenue;\r\n\r\nif(isset($_REQUEST[\"case\"]))\r\n    $case = $_REQUEST[\"case\"];\r\nelse\r\n    $case = \"defaut\";\r\n\r\n$Vue = new Vue();\r\nswitch ($case) {\r\n    case \"defaut\":\r\n        $Vue->addToCorps(new Vue_Bienvenue());\r\n        break;\r\n\r\n}\r\n$Vue->afficher();
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/index.php b/index.php
+--- a/index.php	
++++ b/index.php	
+@@ -12,6 +12,11 @@
+ switch ($case) {
+     case "defaut":
+         $Vue->addToCorps(new Vue_Bienvenue());
++        $Vue->addToCorps(new Vue_Bienvenue());
++        $Vue->addToCorps(new Vue_Bienvenue());
++        $Vue->addToCorps(new Vue_Bienvenue());
++        $Vue->addToCorps(new Vue_Bienvenue());
++        $Vue->addToCorps(new Vue_Bienvenue());
+         break;
+ 
+ }
+Index: src/Vue/Vue_Bienvenue.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\r\nnamespace App\\Vue;\r\nuse App\\Utilitaire\\Vue_Composant;\r\n\r\nclass Vue_Bienvenue extends Vue_Composant\r\n{\r\n    private string $msgErreur;\r\n    public function __construct(string $msgErreur =\"\")\r\n    {\r\n        $this->msgErreur=$msgErreur;\r\n    }\r\n\r\n    function donneTexte(): string\r\n    {\r\n        $str= \"\r\n<h1>Café : J'aime !</h1>\r\n<div  style='    width: 50%;    display: block;    margin: auto;'>  \r\n  Bienvenue sur le site de la société Café !\r\n</div>\r\n        $this->msgErreur\r\n    \";\r\n        return $str ;\r\n    }\r\n}
+===================================================================
+diff --git a/src/Vue/Vue_Bienvenue.php b/src/Vue/Vue_Bienvenue.php
+--- a/src/Vue/Vue_Bienvenue.php	
++++ b/src/Vue/Vue_Bienvenue.php	
+@@ -1,5 +1,6 @@
+ <?php
+ namespace App\Vue;
++
+ use App\Utilitaire\Vue_Composant;
+ 
+ class Vue_Bienvenue extends Vue_Composant
